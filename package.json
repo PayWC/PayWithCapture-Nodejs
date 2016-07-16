@@ -1,0 +1,14 @@
+{
+  "name": "PayWithCapture",
+  "author": "Ridwan Olalere",
+  "version": "0.0.1",
+  "description": "A Nodejs module for PayWithCapture API",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brentertz/scapegoat.git"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  }
+}
