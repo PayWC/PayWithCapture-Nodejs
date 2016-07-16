@@ -77,7 +77,7 @@ var RequestBuilder = function(baseUrl) {
   * This method is responsible for building get request and sending it to
   * PayWithCapture server
   */
-  this.makeGetRequest = function() {
+  this.makeGetRequest = function(path) {
     var deferred = Q.defer();
     request({
       url: serverBaseUrl+path,
