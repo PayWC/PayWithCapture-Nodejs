@@ -64,9 +64,11 @@ var RequestBuilder = function(baseUrl) {
       form: formData
     }, function(error, response, body){
       if(error){
+        //TODO: Error checking and validation will happen here
         logger.error(error);
         deferred.reject();
       }else {
+        //TODO: statusCode response and response status error checks will happen at this level
         deferred.resolve({response: response, body: body});
       }
     });
@@ -86,9 +88,11 @@ var RequestBuilder = function(baseUrl) {
       qs: queryParams
     }, function(error, response, body){
       if(error){
+        //TODO: Error checking and validation will happen here
         logger.error(error);
         deferred.reject();
       }else {
+        //TODO: statusCode response and response status error checks will happen at this level
         deferred.resolve({response: response, body: body});
       }
     });
