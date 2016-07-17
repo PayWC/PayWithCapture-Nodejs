@@ -25,7 +25,7 @@ describe("AccountPayment", function() {
                   });
       });
 
-      it("Should be successful", function() {
+      it("Account payment response from the server should be success", function() {
         assert.equal(accountPaymentResp['status'], "success", "Account payment successful");
       });
 
