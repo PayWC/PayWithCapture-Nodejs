@@ -8,7 +8,6 @@ var winston = require('winston');
 *
 ******/
 var Authentication = function(clientId, clientSecret, env) {
-  var self = this;
   var clientId = clientId;
   var clientSecret = clientSecret;
   var env = env;
@@ -19,6 +18,10 @@ var Authentication = function(clientId, clientSecret, env) {
     "refresh_token": ""
   };
 
+  /*
+  * @method Authenticates against the server
+  * @return promise
+  */
   this.authenticate = function() {
     var deferred = Q.defer();
     var builderPromise = new RequestBuilder(Values.server_base_url[env])
