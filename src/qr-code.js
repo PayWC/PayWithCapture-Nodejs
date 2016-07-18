@@ -4,6 +4,9 @@ var Authentication = require('./authentication');
 var winston = require('winston');
 var Values = require('./values');
 
+/*
+* responsible for generating and fetching product qr code from pwc server
+*/
 var QrCode = function(clientId, clientSecret, env) {
   var _clientId = clientId,
       _clientSecret = clientSecret,
@@ -48,8 +51,29 @@ var QrCode = function(clientId, clientSecret, env) {
     return deferred.promise;
   };
 
-  this.getQrCode = function() {
-
+  /*
+  * after a product qrCode is generated on the server
+  * you can then use fetchProductQrCode to fetch its qr code using the product Id
+  * @param productId
+  */
+  this.fetchProductQrCode = function(productId) {
+    var deferred = Q.defer();
+    new Authentication(_clientId, _clientSecret, _env)
+      .authenticate()
+      .then(function(authResp) {
+        new RequestBuilder(Values.server_base_url[_env])
+          .addAccessToken(authResp['access_token'])
+          .addData("product_id", productId)
+          .makePostRequest(Values.qr_code_path)
+          .then(function(resp) {
+            if (resp.error) {
+              deferred.reject();
+            } else {
+              deferred.resolve(JSON.parse(resp.body));
+            }
+          });
+      });
+    return deferred.promise;
   }
 }
 
