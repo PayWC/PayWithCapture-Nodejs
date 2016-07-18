@@ -10,7 +10,8 @@ var values = {
   },
   authentication_path: "/oauth/token",
   payment_path: "/orders/oneOffPayment",
-  pos_printing_path: "/orders/transactions"
+  pos_printing_path: "/orders/transactions",
+  qr_code_path: "/products/getQrCode"
 }
 
 module.exports = values;
