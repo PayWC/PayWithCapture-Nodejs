@@ -1,6 +1,8 @@
 var RequestBuilder = require('./request-builder');
 var Authentication = require('./authentication');
+var Values = require('./values');
 var Q = require('q');
+var winston = require('winston');
 
 /*
 * @class CardPayment. Responsible for card payments
@@ -29,10 +31,13 @@ var CardPayment = function(clientId, clientSecret, env) {
   * @param data['redirect_url'] //optional
   */
   this.createPayment = function(data) {
+    winston.info("In createPayment");
     var deferred = Q.defer();
     var auth = new Authentication(_clientId, _clientSecret, _env)
     auth.authenticate()
         .then(function(authResp) {
+          winston.info("In authenticate callback");
+          winston.info("Response from auth: "+ JSON.stringify(authResp));
           var builder = new RequestBuilder(Values.server_base_url[_env])
                           .addAccessToken(authResp['access_token'])
                           .addData("type", "card")
@@ -43,18 +48,20 @@ var CardPayment = function(clientId, clientSecret, env) {
                           .addData("expmth", data['exp_month'])
                           .addData("expyear", data['exp_year'])
                           .addData("cvv", data['cvv']);
-
+          winston.info("before the first if");
           if (data['pin'] !== undefined)
             builder.addData("pin", data['pin']);
-
+          winston.info("after the first if");
           if (data['bvn'] !== undefined)
             builder.addData("bvn", data['bvn']);
 
           if (data['redirect_url'] !== undefined)
             builder.addData("redirect_url", data['redirect_url']);
 
+          winston.info("About to enter makePostRequest");
           builder.makePostRequest(Values.payment_path)
                   .then(function(resp) {
+                    winston.info('in makePostRequest callback and server response is '+JSON.stringify(resp));
                     if (resp.error){
                       deferred.reject(resp.error);
                     } else {

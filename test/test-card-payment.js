@@ -7,8 +7,8 @@ describe("CardPayment", function() {
     var cardPaymentResponse;
 
     before(function(){
-      var clientId = "577e5fe42989c31100b26f14",
-          clientSecret = "diHopa8yFNDWofRNJIeREDmAV3HhL7bwr4umhlhPS0CgqIiOylA6Y9obfsV9VsbWBDuMUKE7MvVpIrtip4oX8zmG21I4QI1rhwjx";
+      var clientId = "577e5fe42989c31100b26f14";
+      var clientSecret = "diHopa8yFNDWofRNJIeREDmAV3HhL7bwr4umhlhPS0CgqIiOylA6Y9obfsV9VsbWBDuMUKE7MvVpIrtip4oX8zmG21I4QI1rhwjx";
       var cardClient = new CardPayment(clientId, clientSecret, "staging");
       var data = {
         "card_no": "5061020000000000094",
@@ -28,8 +28,8 @@ describe("CardPayment", function() {
                         });
     });
 
-    it("Should return success", function() {
-      winston.info(JSON.stringify)
+    it("Card payment response should return success", function() {
+      winston.info(JSON.stringify(cardPaymentResponse));
     });
   });
 });
