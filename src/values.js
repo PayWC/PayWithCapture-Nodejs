@@ -9,7 +9,8 @@ var values = {
     production: "https://pwcstaging.herokuapp.com"
   },
   authentication_path: "/oauth/token",
-  payment_path: "/orders/oneOffPayment"
+  payment_path: "/orders/oneOffPayment",
+  pos_printing_path: "/orders/transactions"
 }
 
 module.exports = values;
