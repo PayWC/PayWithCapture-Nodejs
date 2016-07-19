@@ -29,3 +29,5 @@ var PayWithCaptureClient = function(_clientId, _clientSecret, _env) {
     return new PosPrinting(clientId, clientSecret, env);
   }
 }
+
+module.exports = PayWithCaptureClient;
