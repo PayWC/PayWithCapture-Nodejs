@@ -3,6 +3,9 @@ var QrCode = require('../src/qr-code');
 var winston = require('winston');
 
 describe("QrCode", function() {
+  //when a qr code is generated this variable is
+  //set from the server response in generateQrCode
+  var productId;
   describe("#generateQrCode()", function() {
     var generateQrCodeResponse;
 
@@ -21,6 +24,7 @@ describe("QrCode", function() {
               .generateQrCode(data)
               .then(function(resp) {
                 generateQrCodeResponse = resp;
+                productId = generateQrCodeResponse['data']['id'];
               });
     });
 
@@ -37,7 +41,7 @@ describe("QrCode", function() {
     before(function() {
       var clientId = "577e5fe42989c31100b26f14";
       var clientSecret = "diHopa8yFNDWofRNJIeREDmAV3HhL7bwr4umhlhPS0CgqIiOylA6Y9obfsV9VsbWBDuMUKE7MvVpIrtip4oX8zmG21I4QI1rhwjx";
-      var productId = "";
+
       return new QrCode(clientId, clientSecret, "staging")
               .fetchProductQrCode(productId)
               .then(function(resp) {
