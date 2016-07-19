@@ -18,7 +18,7 @@ describe("CardPayment", function() {
         "pin": "1111",
         "amount": 1000,
         "description": "from nodejs",
-        "transaction_id": new Date().getTime(),
+        "transaction_id": new Date().getTime(), //Your reference for this transaction
         "merchant_id": "577e5fe42989c31100b26f13",
       };
       return cardClient.createPayment(data)
