@@ -4,8 +4,6 @@ The PayWithCapture Nodejs lets you write Javascript code to consume PayWithCaptu
 You can signup for a PayWithCapture developer account at [PayWithCapture DevCenter](https://pwcdevcenter.herokuapp.com)
 
 ### PayWithCapture API Services
-+ __Account Payment__
-+ __Card Payment__
 + __Transactions__
 + __POS Printing__
 + __QR CODES__
